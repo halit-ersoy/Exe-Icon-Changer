@@ -37,11 +37,12 @@ def change_icon():
             shutil.copyfile(exe_path, new_exe_path)
             # Update the icon of the copied executable
             with open(new_exe_path, 'r+b') as exe_file:
-                exe_file.seek(0)
+                exe_file.seek(0, 2)  # Move the pointer to the end of the file
                 exe_file.write(icon_data)
             status_label.config(text="Icon changed successfully. New file saved at: " + new_exe_path, fg="green")
     except Exception as e:
         status_label.config(text=f"Error: {str(e)}", fg="red")
+
 
 
 # GUI
